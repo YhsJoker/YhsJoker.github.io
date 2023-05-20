@@ -2,7 +2,8 @@
 title: Codeforces Round 863 (Div.3)
 date: 2023-04-15 19:36:51
 tags:
-  - [Codeforces]
+  - [codeforces]
+categories: 题解
 ---
 
 Codeforces Round 863 A-F
