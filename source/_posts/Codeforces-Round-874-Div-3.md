@@ -6,9 +6,9 @@ tags:
 categories: 题解
 ---
 
-Codeforces Round 874 A-F
+Codeforces Round 874 A-G
 
-
+<!-- more -->
 
 ## A. Musical Puzzle
 
@@ -243,6 +243,8 @@ void solve(){
 
 
 
+### 代码
+
 ```cpp
 int n, m;
  
@@ -292,6 +294,77 @@ void solve(){
 	}
 	
 	cout<<res<<'\n';
+}
+```
+
+
+
+## G. Ksyusha and Chinchilla
+
+### 思路
+
+以任意一点为根构造一棵树，遍历该树。DFS回溯的过程中如果某一点所有的子树的点数和为2，那么就和该点组成一个branch，然后减掉这个branch。如果点数和为1或0，那么就和该点组合起来，继续向上回溯。如果和大于3，就是无解的。
+
+
+
+### 代码
+
+```cpp
+int n;
+int h[N], e[M], ne[M], id[M], idx;
+ 
+void add(int a, int b, int c){
+	e[idx] = b, id[idx] = c, ne[idx] = h[a], h[a] = idx++;
+}
+ 
+bool ok = 1;
+vector<int> res;
+int dfs(int u, int fa, int fid){
+	if(!ok) return 0;
+	
+	int sum = 0;
+	
+	for(int i=h[u]; ~i; i=ne[i]){
+		int j = e[i];
+		if(j == fa) continue;
+		sum+=dfs(j, u, id[i]);
+	}
+	
+	if(sum>2){
+		ok = 0; return 0;
+	}
+	if(sum == 2){
+		if(fid) res.push_back(fid);
+		return 0;
+	}
+	return sum+1;
+}
+ 
+void solve(){
+	cin>>n;
+	memset(h, -1, sizeof(int) * (n+1));
+	idx = 0;
+	for(int i=1; i<n; i++){
+		int a, b; cin>>a>>b;
+		add(a, b, i);
+		add(b, a, i);
+	}
+	
+	ok = 1;
+	res.clear();
+	int rem = dfs(1, 0, 0);
+	
+	if(ok && !rem){
+		cout<<res.size()<<'\n';
+		for(auto e:res){
+			cout<<e<<' ';
+		}
+		cout<<'\n';
+	}
+	else{
+		cout<<-1<<'\n';
+	}
+	
 }
 ```
 
