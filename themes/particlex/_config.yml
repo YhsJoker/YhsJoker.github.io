@@ -48,7 +48,7 @@ menu:
 # side info card
 card:
     enable: true
-    description: ["未来目标:区域赛拿牌","春季目标：CF紫名, AtCoder青名, 蓝桥杯国奖"] # You can add more
+    description: ["未来目标:区域赛拿牌","夏季目标：CF紫名"] # You can add more
     icon_links:
         []
         # Example:
