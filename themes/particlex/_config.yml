@@ -2,13 +2,13 @@
 # Developer: argvchs
 
 # avatar image url
-head_img: /img/images/head_portrait.jpg
+head_img: /images/head_portrait.jpg
 
 # home page head info block
 head_block_enable: true
 
 # home page head background style
-home_background: /img/images/background.jpg
+home_background: /images/background.jpg
 
 # WARNING! vf_fonts (variable fonts) feature is EXPERIMENTAL
 # MDN: https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
@@ -48,7 +48,7 @@ menu:
 # side info card
 card:
     enable: true
-    description: ["未来目标:区域赛拿牌","夏季目标：CF紫名"] # You can add more
+    description: ["未来目标:区域赛拿牌"] # You can add more
     icon_links:
         []
         # Example:

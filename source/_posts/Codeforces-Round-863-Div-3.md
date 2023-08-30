@@ -204,7 +204,7 @@ void solve(){
 
 + 由k+1个正k边形组成, 其中中心图形的每一个顶点都有一个k边形。如图所示。
 
-![k-flowers](../img/CodeforcesRound863/kflowers.png)
+![k-flowers](../post_source/CodeforcesRound863/kflowers.png)
 
 ### 思路
 

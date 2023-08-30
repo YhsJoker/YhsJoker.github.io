@@ -4,7 +4,7 @@
 
 # Site
 title: Yhs_JokerのBlog
-subtitle: '一个ACMerの题解网站'
+subtitle: '一个BJFU&ACMerの网站'
 description: 'There is only one kind of heroism in the world, which is to love life after knowing the truth of life.'
 keywords:
 author: Yhs_Joker
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
