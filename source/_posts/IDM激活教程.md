@@ -21,7 +21,7 @@ IDM激活教程。
 
 ## 二. 激活IDM
 
-1. 下载IDM激活工具： [IDM 激活工具.cmd](/download/IDM 激活工具.cmd) 。
+1. 下载IDM激活工具： [IDM 激活工具.cmd](https://github.com/yhsjoker/yhsjoker.github.io/blob/hexo/source/post_source/IDM%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/IDM%20%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7.cmd) 。
 2. 打开IDM激活工具，按下1即可。
 
 ![IDM激活工具界面](./../post_source/IDM激活教程/IDM激活工具界面.png)
