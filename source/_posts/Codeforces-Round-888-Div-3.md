@@ -4,11 +4,8 @@ date: 2023-07-26 14:25:18
 tags:
   - [codeforces]
 categories: 题解
+description: Codeforces Round 888 A-G, F和G有思路讲解
 ---
-
-Codeforces Round 888 A-G, F和G有思路讲解
-
-<!-- more -->
 
 ## A. Escalator Conversations
 

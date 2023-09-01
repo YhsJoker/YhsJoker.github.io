@@ -4,11 +4,8 @@ date: 2023-04-15 19:36:51
 tags:
   - [codeforces]
 categories: 题解
+description: Codeforces Round 863 A-F
 ---
-
-Codeforces Round 863 A-F
-
-<!-- more -->
 
 ## 原题链接：[戳这里](https://codeforces.com/contest/1811)
 

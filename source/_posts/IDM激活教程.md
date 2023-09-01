@@ -4,11 +4,8 @@ date: 2023-08-30 19:58:24
 tags:
   - [IDM]
 categories: 软件
+description: 帮你免费激活一款实用的多线程下载工具
 ---
-
-IDM激活教程。
-
-<!--more-->
 
 ## 一. 下载IDM。
 

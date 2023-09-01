@@ -4,11 +4,8 @@ date: 2023-01-08 09:18:13
 tags:
 	- [AtCoder]
 categories: 题解
+description: AtCoder Beginner Contest 284 A-E
 ---
-
-AtCoder Beginner Contest 284 A-E
-
-<!-- more -->
 
 ### 原题链接：[戳这里](https://atcoder.jp/contests/abc284)
 

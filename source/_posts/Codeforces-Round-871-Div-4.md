@@ -4,11 +4,8 @@ date: 2023-05-21 21:05:39
 tags:
   - [codeforces]
 categories: 题解
+description: Codeforces Round 871 A-H
 ---
-
-Codeforces Round 871 A-H
-
-<!-- more -->
 
 ## A. Love Story
 

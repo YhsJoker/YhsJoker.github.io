@@ -4,11 +4,8 @@ date: 2023-05-20 11:01:02
 tags:
   - [codeforces]
 categories: 题解
+description: Codeforces Round 874 A-G
 ---
-
-Codeforces Round 874 A-G
-
-<!-- more -->
 
 ## A. Musical Puzzle
 

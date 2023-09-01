@@ -6,11 +6,8 @@ tags:
 	- [分层图]
 	- [蓝]
 categories: 题解
+description: 一道分层图最短路模板题
 ---
-
-一道分层图最短路模板题
-
-<!-- more -->
 
 ## [原题戳这里](https://www.luogu.com.cn/problem/P2939)
 

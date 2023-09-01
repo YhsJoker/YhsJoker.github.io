@@ -4,11 +4,8 @@ date: 2023-01-17 13:42:45
 tags:
     - [BJFU寒假算法训练营]
 categories: 题解
+description: BJFU寒假算法训练复习题目。
 ---
-
-BJFU寒假算法训练复习题目。
-
-<!-- more -->
 
 ## A
 

@@ -7,11 +7,8 @@ tags:
   - [JavaScript]
   - [作业]
 categories: 项目
+description: 介绍家乡美食和风景的网站，只运用了HTML，CSS与JS
 ---
-
-介绍家乡美食和风景的网站，只运用了HTML，CSS与JS
-
-<!-- more-->
 
 预览：[戳此处来看一下效果吧！](https://web-yhsjoker.netlify.app/)
 
