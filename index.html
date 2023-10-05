@@ -2,127 +2,155 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta charset="utf-8" />
         <title>Yhs_JokerのBlog</title>
-        <meta name="author" content="Yhs_Joker">
-        <meta name="description" content="There is only one kind of heroism in the world, which is to love life after knowing the truth of life.">
-        <meta name="keywords" content="">
-        <link rel="icon" href="/img/images/head_portrait.jpg">
-        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
-        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
-        
-        <link rel="stylesheet" href="/css/fonts.min.css">
-        <link rel="stylesheet" href="/css/particlex.css">
-        
-        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <meta name="author" content="Yhs_Joker" />
+        <meta name="description" content="There is only one kind of heroism in the world, which is to love life after knowing the truth of life." />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body>
-        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
         <div id="layout">
-            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
-            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
-            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
-            <transition name="into">
-                <div v-show="show_page" style="display: -not-none">
-                    <div id="menu_show">
-                         
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">Yhs_JokerのBlog</span>
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YHS_JOKERのBLOG</span>
         </a>
         
         <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;home</span>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/about">
             <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;about</span>
+            <span>&ensp;About</span>
         </a>
         
         <a href="/archives">
             <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;archives</span>
+            <span>&ensp;Archives</span>
         </a>
         
         <a href="/categories">
             <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;categories</span>
+            <span>&ensp;Categories</span>
         </a>
         
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;tags</span>
+            <span>&ensp;Tags</span>
         </a>
         
-    </div>
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
-        <div :class="'title'" @click="menu_show = !menu_show">
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;Yhs_JokerのBlog</span>
+            <span>&emsp;YHS_JOKERのBLOG</span>
         </div>
         <transition name="slide">
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-house fa-fw"></i>
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
-                </div>
-            </a>
-            
-            <a href="/categories">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
-                </div>
-            </a>
-            
-            <a href="/tags">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-tags fa-fw"></i>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
-                </div>
-            </a>
-            
-        </div>
+                </a>
+                
+            </div>
         </transition>
-    </div>
-</nav>
-                    </div>
-                    <div id="main">
-                        <div id="home-head">
-    <div id="home-background" style="background-image: url(/img/images/background.jpg)"></div>
-    
-    <div id="home-info" class="home-info" @click="home_click">
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
         <span class="loop"></span>
         <span class="loop"></span>
         <span class="loop"></span>
@@ -130,18 +158,275 @@
         <span class="info">
             <div class="wrap">
                 <h1>Yhs_JokerのBlog</h1>
-                <h3>一个ACMerの题解网站</h3>
+                <h3>一个BJFU&amp;ACMerの网站</h3>
                 <h5>There is only one kind of heroism in the world, which is to love life after knowing the truth of life.</h5>
             </div>
         </span>
     </div>
-    
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/10/04/Data-Structure-recursion-demonstration-PPT/">
+        <h2 class="post-title">数据结构递归演示小作业</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E4%BD%9C%E4%B8%9A/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                作业
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/4
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>数据结构递归演示的PPT作业，第一次学习制作好看一点的PPT</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00bcd4">数据结构</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/04/Data-Structure-recursion-demonstration-PPT/" class="go-post">阅读全文</a>
 </div>
 
-<div id="home-posts-wrap" class="">
-    <div id="home-posts">
-        <div id="posts">
+<div class="post">
+    <a href="/2023/09/25/BJFU2021-Freshman-Competition-Question-Explanation/">
+        <h2 class="post-title">BJFU2021新生赛题解</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                题解
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
             
+            <p>BJFU2021新生赛题解（全）</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%96%B0%E7%94%9F%E8%B5%9B/" style="color: #ffa2c4">新生赛</a>
+        </span>
+        
+    </div>
+    <a href="/2023/09/25/BJFU2021-Freshman-Competition-Question-Explanation/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/08/30/IDM-Activation-Tutorial/">
+        <h2 class="post-title">IDM激活教程</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E8%BD%AF%E4%BB%B6/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                软件
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/30
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>帮你免费激活一款实用的多线程下载工具</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/IDM/" style="color: #00bcd4">IDM</a>
+        </span>
+        
+    </div>
+    <a href="/2023/08/30/IDM-Activation-Tutorial/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/07/26/Web-front-end-development-homework/">
+        <h2 class="post-title">Web前端开发大作业</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E9%A1%B9%E7%9B%AE/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                项目
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/26
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>介绍家乡美食和风景的网站，只运用了HTML，CSS与JS</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E4%BD%9C%E4%B8%9A/" style="color: #03a9f4">作业</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HTML/" style="color: #00a596">HTML</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/CSS/" style="color: #ff7d73">CSS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/JavaScript/" style="color: #00a596">JavaScript</a>
+        </span>
+        
+    </div>
+    <a href="/2023/07/26/Web-front-end-development-homework/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/07/26/Codeforces-Round-888-Div-3/">
+        <h2 class="post-title">Codeforces Round 888 (Div. 3)</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                题解
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/26
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>Codeforces Round 888 A-G, F和G有思路讲解</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/codeforces/" style="color: #ff7d73">codeforces</a>
+        </span>
+        
+    </div>
+    <a href="/2023/07/26/Codeforces-Round-888-Div-3/" class="go-post">阅读全文</a>
+</div>
 
 <div class="post">
     <a href="/2023/05/21/Codeforces-Round-871-Div-4/">
@@ -150,9 +435,9 @@
     <div class="category-and-date">
         
         <span class="category">
-            <a href="/categories/题解/">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
                 题解
             </a>
@@ -160,30 +445,32 @@
         
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2023/5/21
         </span>
+        
+        
     </div>
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
             <p>Codeforces Round 871 A-H</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
         <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/codeforces/" style="color: #ffa2c4">
-                codeforces
-            </a>
+            <a href="/tags/codeforces/" style="color: #ffa2c4">codeforces</a>
         </span>
         
     </div>
@@ -197,9 +484,9 @@
     <div class="category-and-date">
         
         <span class="category">
-            <a href="/categories/题解/">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
                 题解
             </a>
@@ -207,30 +494,32 @@
         
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2023/5/20
         </span>
+        
+        
     </div>
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
             <p>Codeforces Round 874 A-G</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
         <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/codeforces/" style="color: #03a9f4">
-                codeforces
-            </a>
+            <a href="/tags/codeforces/" style="color: #ff7d73">codeforces</a>
         </span>
         
     </div>
@@ -238,15 +527,15 @@
 </div>
 
 <div class="post">
-    <a href="/2023/05/16/Git常用命令/">
+    <a href="/2023/05/16/Git-Common-Commands/">
         <h2 class="post-title">Git常用命令</h2>
     </a>
     <div class="category-and-date">
         
         <span class="category">
-            <a href="/categories/命令-操作手册/">
+            <a href="/categories/%E5%91%BD%E4%BB%A4-%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
                 命令\操作手册
             </a>
@@ -254,34 +543,36 @@
         
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2023/5/16
         </span>
+        
+        
     </div>
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            <p>本文章记录在使用Git过程中常用到的一些命令。</p>
+            <p>本文章记录在使用Git过程中常用到的一些命令</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
         <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/Git/" style="color: #00a596">
-                Git
-            </a>
+            <a href="/tags/Git/" style="color: #03a9f4">Git</a>
         </span>
         
     </div>
-    <a href="/2023/05/16/Git常用命令/" class="go-post">阅读全文</a>
+    <a href="/2023/05/16/Git-Common-Commands/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -291,9 +582,9 @@
     <div class="category-and-date">
         
         <span class="category">
-            <a href="/categories/题解/">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
                 题解
             </a>
@@ -301,30 +592,32 @@
         
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2023/4/15
         </span>
+        
+        
     </div>
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
             <p>Codeforces Round 863 A-F</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
         <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/codeforces/" style="color: #00bcd4">
-                codeforces
-            </a>
+            <a href="/tags/codeforces/" style="color: #ffa2c4">codeforces</a>
         </span>
         
     </div>
@@ -332,15 +625,15 @@
 </div>
 
 <div class="post">
-    <a href="/2023/01/17/2023年BJFU寒假算法训练营DAY3/">
+    <a href="/2023/01/17/2023-BJFU-Winter-Holiday-Algorithm-Training-Camp-DAY3/">
         <h2 class="post-title">2023年BJFU寒假算法训练营DAY3</h2>
     </a>
     <div class="category-and-date">
         
         <span class="category">
-            <a href="/categories/题解/">
+            <a href="/categories/%E9%A2%98%E8%A7%A3/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
                 题解
             </a>
@@ -348,364 +641,140 @@
         
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2023/1/17
         </span>
+        
+        
     </div>
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
             <p>BJFU寒假算法训练复习题目。</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
         <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/BJFU寒假算法训练营/" style="color: #03a9f4">
-                BJFU寒假算法训练营
-            </a>
+            <a href="/tags/BJFU%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83%E8%90%A5/" style="color: #00bcd4">BJFU寒假算法训练营</a>
         </span>
         
     </div>
-    <a href="/2023/01/17/2023年BJFU寒假算法训练营DAY3/" class="go-post">阅读全文</a>
+    <a href="/2023/01/17/2023-BJFU-Winter-Holiday-Algorithm-Training-Camp-DAY3/" class="go-post">阅读全文</a>
 </div>
 
-<div class="post">
-    <a href="/2023/01/13/BJFU-2023-集训队训练赛-4/">
-        <h2 class="post-title">BJFU-2023-集训队训练赛-4</h2>
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    <a class="page-num" href="/page/2">2</a>
+    
+    
+    
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
     </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/题解/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/13
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>BJFU集训队寒假训练题目（部分）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/集训队训练赛/" style="color: #ffa2c4">
-                集训队训练赛
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/13/BJFU-2023-集训队训练赛-4/" class="go-post">阅读全文</a>
+    
 </div>
 
-<div class="post">
-    <a href="/2023/01/13/BJFU-2023-集训队训练赛-3/">
-        <h2 class="post-title">BJFU-2023-集训队训练赛-3</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/题解/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/13
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>BJFU集训队寒假训练题目（部分）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/集训队训练赛/" style="color: #ffa2c4">
-                集训队训练赛
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/13/BJFU-2023-集训队训练赛-3/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/01/12/BJFU-2023-集训队训练赛-2/">
-        <h2 class="post-title">BJFU-2023-集训队训练赛-2</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/题解/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>BJFU集训队寒假训练题目（部分）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/集训队训练赛/" style="color: #ffa2c4">
-                集训队训练赛
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/12/BJFU-2023-集训队训练赛-2/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/01/10/BJFU-2023-集训队训练赛-1/">
-        <h2 class="post-title">BJFU-2023-集训队训练赛-1</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/题解/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/10
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>BJFU集训队寒假训练题目（部分）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/集训队训练赛/" style="color: #00a596">
-                集训队训练赛
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/10/BJFU-2023-集训队训练赛-1/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/01/08/AtCoder Beginner Contest-284/">
-        <h2 class="post-title">AtCoder Beginner Contest 284</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/题解/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/8
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>AtCoder Beginner Contest 284 A-E</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/AtCoder/" style="color: #ffa2c4">
-                AtCoder
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/08/AtCoder Beginner Contest-284/" class="go-post">阅读全文</a>
-</div>
-
-             
-<div class="page-current">
-    <div class="prev">
-        
-    </div>
-    <div class="page-index">
-        
-        <span class="current">
-            1
-        </span>
-        
-        <span>
-            <a href="/page/2/">
-                <span class="page-num">
-                    2
-                </span>
-            </a>
-            
-            
-        </span>
-        
-    </div>
-    <div class="next">
-        
-        <a href="/page/2/ ">
-            <span class="page-num">
-                <i class="fa-solid fa-caret-right fa-fw"></i>
-            </span>
-        </a>
-        
-    </div>
-</div>
-        </div>
     </div>
     
     <div id="home-card">
-        <div id="card-div">
-    <div class="card-style" style="width: 300px">
+        <div id="card-style">
+    <div id="card-div">
         <div class="avatar">
-            <img src="/img/images/head_portrait.jpg " alt="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
         </div>
-        <div class="name">
-            Yhs_Joker
+        <div class="name">Yhs_Joker</div>
+        <div class="description">
+            <p>你指尖跃动的电光，是我此生不变的信仰</p>
+
         </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                未来目标:区域赛拿牌
-            </div>
-            
-            <div class="description">
-                春季目标：CF紫名, AtCoder青名, 蓝桥杯国奖
-            </div>
-            
-        </div>
+        
         <div class="icon-links">
             
-        </div>
-        <div class="friend-links">
+            <span class="icon-link">
+                <a href="mailto:2445087609@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/496870657">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/yhsjoker">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
             
         </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Ty-verse">Tyw</a>
+            </div>
+            
+        </div>
+        
     </div>
 </div>
+
     </div>
     
 </div>
-                         
-<footer id="footer">
-    <div class="footer-wrap">
+
+                <footer id="footer">
+    <div id="footer-wrap">
         <div>
-            © 2022 - 2023 Yhs_JokerのBlog
-            <span class="footer-icon">
+            &copy;
+            2022 - 2023 Yhs_JokerのBlog
+            <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
-            @Yhs_Joker
+            &commat;Yhs_Joker
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
         
     </div>
 </footer>
-                    </div>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
                 </div>
             </transition>
-            <div id="img_show">
-                <img id="img_content" alt="img_show">
-            </div>
+            
         </div>
-        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
-        <script src="/js/particlex.js"></script>
-        <script src="/js/showimg.js"></script>
+        <script src="/js/main.js"></script>
         
-
     </body>
 </html>

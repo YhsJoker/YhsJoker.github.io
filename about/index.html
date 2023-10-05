@@ -2,191 +2,264 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>About | Yhs_JokerのBlog</title>
-        <meta name="author" content="Yhs_Joker">
-        <meta name="description" content="There is only one kind of heroism in the world, which is to love life after knowing the truth of life.">
-        <meta name="keywords" content="">
-        <link rel="icon" href="/img/images/head_portrait.jpg">
-        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
-        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
-        
-        <link rel="stylesheet" href="/css/fonts.min.css">
-        <link rel="stylesheet" href="/css/particlex.css">
-        
-        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <meta charset="utf-8" />
+        <title>about | Yhs_JokerのBlog</title>
+        <meta name="author" content="Yhs_Joker" />
+        <meta name="description" content="There is only one kind of heroism in the world, which is to love life after knowing the truth of life." />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body>
-        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
         <div id="layout">
-            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
-            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
-            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
-            <transition name="into">
-                <div v-show="show_page" style="display: -not-none">
-                    <div id="menu_show">
-                         
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">Yhs_JokerのBlog</span>
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YHS_JOKERのBLOG</span>
         </a>
         
         <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;home</span>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/about">
             <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;about</span>
+            <span>&ensp;About</span>
         </a>
         
         <a href="/archives">
             <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;archives</span>
+            <span>&ensp;Archives</span>
         </a>
         
         <a href="/categories">
             <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;categories</span>
+            <span>&ensp;Categories</span>
         </a>
         
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;tags</span>
+            <span>&ensp;Tags</span>
         </a>
         
-    </div>
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
-        <div :class="'title'" @click="menu_show = !menu_show">
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;Yhs_JokerのBlog</span>
+            <span>&emsp;YHS_JOKERのBLOG</span>
         </div>
         <transition name="slide">
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-house fa-fw"></i>
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
-                </div>
-            </a>
-            
-            <a href="/categories">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
-                </div>
-            </a>
-            
-            <a href="/tags">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-tags fa-fw"></i>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
-                </div>
-            </a>
-            
-        </div>
+                </a>
+                
+            </div>
         </transition>
-    </div>
-</nav>
-                    </div>
-                    <div id="main">
-                        
-<div class="article">
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
     <div>
-        <h1>About </h1>
+        <h1>about</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2022/11/17
         </span>
         
         
     </div>
+    
     <div class="content" v-pre>
-        <h2 id="兴趣爱好"><a href="#兴趣爱好" class="headerlink" title="兴趣爱好"></a>兴趣爱好</h2><ul>
-<li>Muse Dash</li>
-<li>偶尔追番</li>
-<li>三国杀萌新</li>
+        <h2 id=""><a href="#" class="headerlink" title=""></a><i class="fa-solid fa-hands-bubbles"></i></h2><pre><code class="cpp">std::cout &lt;&lt; &quot;Hi~&quot; &lt;&lt; std::endl;
+</code></pre>
+<pre><code class="python">print(&quot;Welcome!&quot;)
+</code></pre>
+<br>
+
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><i class="fa-solid fa-heart"></i></h2><ul>
+<li>Muse Dash <i class="fa-solid fa-music"></i></li>
+<li>偶尔追番 <i class="fa-brands fa-bilibili"></i></li>
+<li>三国杀 <i class="fa-solid fa-thumbs-down"></i></li>
+<li>农 <i class="fa-solid fa-gamepad"></i></li>
 </ul>
-<h2 id="成就"><a href="#成就" class="headerlink" title="成就"></a>成就</h2><p>Mar&#x2F;27&#x2F;2023 CF蓝名祭</p>
-<h2 id="春季目标"><a href="#春季目标" class="headerlink" title="春季目标"></a>春季目标</h2><ul>
-<li>CF rating 1900+</li>
-<li>AtCoder 1200+</li>
-<li>蓝桥杯国奖</li>
-<li>天梯赛个人二等奖</li>
+<br>
+
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a><i class="fa-solid fa-trophy"></i></h2><ul>
+<li>Nov&#x2F;20&#x2F;2022 BJFU新生赛第一名</li>
+<li>Mar&#x2F;27&#x2F;2023 CF蓝名祭</li>
+<li>Apr&#x2F;22&#x2F;2023 程序设计天梯赛217分，团体国家一等奖，个人国家三等奖</li>
+<li>Apr&#x2F;23&#x2F;2023 蓝桥杯北京市C&#x2F;C++A组省级一等奖</li>
+<li>Jun&#x2F;16&#x2F;2023 蓝桥杯C&#x2F;C++A组全国二等奖</li>
+<li>Jul&#x2F;20&#x2F;2023 RAICOM-CAIP北京市省级一等奖</li>
+<li>Aug&#x2F;12&#x2F;2023 百度之星北京市省级三等奖</li>
+<li>Aug&#x2F;24&#x2F;2023 RAICOM-CAIP全国一等奖</li>
 </ul>
-<h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><ul>
-<li>QQ：2445087609</li>
-<li>Email：<a href="mailto:&#x32;&#52;&#52;&#x35;&#48;&#x38;&#55;&#54;&#x30;&#x39;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x32;&#52;&#52;&#x35;&#48;&#x38;&#55;&#54;&#x30;&#x39;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;</a></li>
-<li>WeChat：MiracleMaker0528</li>
-<li>BiliBili：怪盗JOKERぃ</li>
-<li>洛谷：Yhs_Joker</li>
-<li>Codeforces：Yhs_Joker</li>
-</ul>
+<br>
+
+<h2 id="下面由我老婆镇楼"><a href="#下面由我老婆镇楼" class="headerlink" title="下面由我老婆镇楼~"></a>下面由我老婆镇楼~</h2><p><img src="/./../post_source/About/Misaka.png" alt="Misaka"></p>
+<p><img src="/./../post_source/About/ShokuhouMisaki.jpg" alt="ShokuhouMisaki"></p>
 
     </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
     
     
 </div>
-                         
-<footer id="footer">
-    <div class="footer-wrap">
+
+                <footer id="footer">
+    <div id="footer-wrap">
         <div>
-            © 2022 - 2023 Yhs_JokerのBlog
-            <span class="footer-icon">
+            &copy;
+            2022 - 2023 Yhs_JokerのBlog
+            <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
-            @Yhs_Joker
+            &commat;Yhs_Joker
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
         
     </div>
 </footer>
-                    </div>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
                 </div>
             </transition>
-            <div id="img_show">
-                <img id="img_content" alt="img_show">
-            </div>
+            
         </div>
-        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
-        <script src="/js/particlex.js"></script>
-        <script src="/js/showimg.js"></script>
+        <script src="/js/main.js"></script>
         
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="yhsjoker/yhsjoker.github.io"
+    data-repo-id="R_kgDOIchRxw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOIchRx84CZAz1"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
 
+
+
+
+
+        
     </body>
 </html>
