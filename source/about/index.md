@@ -4,14 +4,32 @@ date: 2022-11-17 12:24:57
 type: about
 ---
 
-## 兴趣爱好
-+ Muse Dash
-+ 偶尔追番
-+ 三国杀萌新
+
+
+## <i class="fa-solid fa-hands-bubbles"></i>
+
+```cpp
+std::cout << "Hi~" << std::endl;
+```
 
 
 
-## 成就
+```python
+print("Welcome!")
+```
+
+<br>
+
+## <i class="fa-solid fa-heart"></i>
+
++  Muse Dash <i class="fa-solid fa-music"></i>
++ 偶尔追番 <i class="fa-brands fa-bilibili"></i>
++ 三国杀 <i class="fa-solid fa-thumbs-down"></i>
++ 农 <i class="fa-solid fa-gamepad"></i>
+
+<br>
+
+## <i class="fa-solid fa-trophy"></i>
 
 + Nov/20/2022 BJFU新生赛第一名
 + Mar/27/2023 CF蓝名祭
@@ -22,11 +40,10 @@ type: about
 + Aug/12/2023 百度之星北京市省级三等奖
 + Aug/24/2023 RAICOM-CAIP全国一等奖
 
+<br>
 
+## 下面由我老婆镇楼~
 
-## 联系方式
-+ QQ：2445087609
-+ Email：2445087609@qq.com
-+ BiliBili：怪盗JOKERぃ
-+ 洛谷：Yhs_Joker
-+ Codeforces：Yhs_Joker
+![Misaka](./../post_source/About/Misaka.png)
+
+![ShokuhouMisaki](./../post_source/About/ShokuhouMisaki.jpg)
