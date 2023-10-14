@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>BJFU-2023-集训队训练赛-4 | Yhs_JokerのBlog</title>
+        <title>Yhs_JokerのBlog</title>
         <meta name="author" content="Yhs_Joker" />
         <meta name="description" content="There is only one kind of heroism in the world, which is to love life after knowing the truth of life." />
         <meta name="keywords" content="" />
@@ -38,9 +38,7 @@
 
 
 
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -150,17 +148,31 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div class="article">
-    <div>
-        <h1>BJFU-2023-集训队训练赛-4</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/1/13
+                <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Yhs_JokerのBlog</h1>
+                <h3>一个BJFU&amp;ACMerの网站</h3>
+                <h5>There is only one kind of heroism in the world, which is to love life after knowing the truth of life.</h5>
+            </div>
         </span>
+    </div>
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2022/11/30/Strictly-Subsmall-Spanning-Tree/">
+        <h2 class="post-title">严格次小生成树</h2>
+    </a>
+    <div class="category-and-date">
         
         <span class="category">
             <a href="/categories/%E9%A2%98%E8%A7%A3/">
@@ -171,84 +183,126 @@
             </a>
         </span>
         
-        
-        <span class="tags">
+        <span class="date">
             <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2022/11/30
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
             
+            <p>很综合的一道题目,代码较长,且细节比较多</p>
+
             
-            <span class="tag">
-                
-                <a href="/tags/%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%AD%E7%BB%83%E8%B5%9B/" style="color: #00bcd4">集训队训练赛</a>
-            </span>
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
             
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00a596">洛谷</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/" style="color: #00bcd4">Kruskal重构树</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%80%8D%E5%A2%9E/" style="color: #ffa2c4">倍增</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%B4%AB/" style="color: #00a596">紫</a>
         </span>
         
     </div>
+    <a href="/2022/11/30/Strictly-Subsmall-Spanning-Tree/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
     
-    <div class="content" v-pre>
-        <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><h3 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h3><p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/103427/problem/J">https://codeforces.com/gym/103427/problem/J</a></p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个密码锁，问从abcd移动到efgh最少需要几步，每次可以转连续的齿轮，但每次只能走一步</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>从abcd到efgh，其实转动的就是差值，相当于从0000走到一个状态C，状态C就是efgh-abcd的差值。因此我们可以从0000出发，跑bfs，得到从0000到所有状态的最短路，最后根据询问查表即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">map&lt;string,int&gt; mp;
-queue&lt;string&gt; q;
-
-string s1,s2;
-
-void init()
-&#123;
-    q.push(&quot;0000&quot;);
-    mp[&quot;0000&quot;]=0;
-    while(q.size())
-    &#123;
-        string s=q.front();
-        int step=mp[s];
-        q.pop();
-        for(int len=1;len&lt;=4;len++)     //每次转动几个齿轮
-        &#123;
-            for(int i=0,j=i+len-1;j&lt;4;i++,j++)  //齿轮边界
-            &#123;
-                string s1=s,s2=s;
-                for(int k=i;k&lt;=j;k++)   //转动齿轮，一个向下转，一个向上转
-                &#123;
-                    s1[k]=(s1[k]-&#39;0&#39;+1)%10+&#39;0&#39;;
-                    s2[k]=(s2[k]-&#39;0&#39;+9)%10+&#39;0&#39;;
-                &#125;
-                if(!mp.count(s1)) q.push(s1),mp[s1]=step+1;
-                if(!mp.count(s2)) q.push(s2),mp[s2]=step+1;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-void input()
-&#123;
-    cin&gt;&gt;s1&gt;&gt;s2;
-&#125;
-
-void solve()
-&#123;
-    input();
-    string s=&quot;0000&quot;;
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
     
-    for(int i=0;i&lt;4;i++)
-        s[i]=(s2[i]-s1[i]+10)%10+&#39;0&#39;;
-
-    cout&lt;&lt;mp[s]&lt;&lt;&#39;\n&#39;;
-&#125;
-</code></pre>
+    <span class="current">3</span>
+    
+    
+    
+    
+</div>
 
     </div>
     
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Yhs_Joker</div>
+        <div class="description">
+            <p>你指尖跃动的电光，是我此生不变的信仰</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a href="mailto:2445087609@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/496870657">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/yhsjoker">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Ty-verse">Tyw</a>
+            </div>
+            
+        </div>
+        
     </div>
-    
-    
-    
+</div>
+
+    </div>
     
 </div>
 
@@ -280,29 +334,6 @@ void solve()
             
         </div>
         <script src="/js/main.js"></script>
-        
-        
-<script
-    src="https://giscus.app/client.js"
-    data-repo="yhsjoker/yhsjoker.github.io"
-    data-repo-id="R_kgDOIchRxw"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOIchRx84CZAz1"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="light"
-    data-lang="zh-CN"
-    crossorigin
-    async
-></script>
-
-
-
-
-
         
     </body>
 </html>
